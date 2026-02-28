@@ -2,10 +2,12 @@ export default function About() {
   return (
     <section
       id="about"
+      aria-labelledby="about-title"
       className="
         scroll-mt-24 sm:scroll-mt-32
         py-24 sm:py-32
         relative overflow-hidden
+        bg-white dark:bg-transparent
       "
     >
       <div
@@ -18,24 +20,39 @@ export default function About() {
       >
         {/* ===== LEFT : ABOUT TEXT ===== */}
         <div className="animate-fade-up text-center md:text-left">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gradient mb-4">
+          <h2
+            id="about-title"
+            className="
+              section-title
+              text-2xl sm:text-3xl
+              mb-5
+              font-semibold
+              text-neutral-950 dark:text-neutral-100
+            "
+          >
             About Me
           </h2>
 
-          <p className="text-slate-400 leading-relaxed mb-5 text-sm sm:text-base">
+          {/* PARAGRAPH 1 */}
+          <p className="leading-7 mb-4 text-sm sm:text-base font-medium text-neutral-900 dark:text-neutral-300">
             I am an Informatics student with a strong interest in modern
-            technology, particularly in{" "}
-            <span className="text-slate-200">front-end development</span>,
-            <span className="text-slate-200"> UI/UX design</span>, and
-            <span className="text-slate-200"> cybersecurity</span>.
+            technology, particularly in front-end development UI/UX design, and cybersecurity.
           </p>
 
-          <p className="text-slate-400 leading-relaxed text-sm sm:text-base">
+          {/* PARAGRAPH 2 */}
+          <p className="leading-7 mb-4 text-sm sm:text-base text-neutral-900 dark:text-neutral-300">
             I enjoy crafting clean and intuitive interfaces, transforming
             design concepts into responsive and user-friendly web applications.
             Alongside front-end development, I actively explore cybersecurity
-            topics and participate in CTF challenges to sharpen my analytical
-            thinking and problem-solving skills.
+            fundamentals and participate in CTF challenges to sharpen my
+            analytical thinking and problem-solving skills.
+          </p>
+
+          {/* PARAGRAPH 3 */}
+          <p className="leading-7 text-sm sm:text-base text-neutral-900 dark:text-neutral-300">
+            Currently, I am continuously improving my skills in modern
+            JavaScript frameworks, accessibility-focused design, and secure web
+            development practices.
           </p>
         </div>
 
@@ -76,7 +93,7 @@ export default function About() {
   );
 }
 
-/* ===== REUSABLE CARD ===== */
+/* ===== REUSABLE SKILL CARD ===== */
 function SkillCard({ title, desc, gradient }) {
   return (
     <div
@@ -84,24 +101,33 @@ function SkillCard({ title, desc, gradient }) {
         group relative
         p-5 sm:p-6
         rounded-xl
-        border border-white/10
-        bg-white/[0.02]
+        border border-neutral-200 dark:border-white/10
+        bg-white dark:bg-white/[0.03]
         backdrop-blur-sm
+        shadow-sm dark:shadow-none
         overflow-hidden
         transition-all duration-300
         hover:-translate-y-1
+        hover:shadow-md dark:hover:shadow-none
       "
     >
       {/* glow aura */}
       <div
-        className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-300 bg-gradient-to-br ${gradient} blur-xl`}
+        className={`
+          absolute inset-0
+          opacity-0 group-hover:opacity-100
+          transition duration-300
+          bg-gradient-to-br ${gradient}
+          blur-xl
+          pointer-events-none
+        `}
       />
 
-      <h3 className="relative font-semibold text-slate-200 mb-1 text-sm sm:text-base">
+      <h3 className="relative mb-1 text-sm sm:text-base font-semibold text-neutral-950 dark:text-neutral-200">
         {title}
       </h3>
 
-      <p className="relative text-xs sm:text-sm text-slate-400">
+      <p className="relative text-xs sm:text-sm text-neutral-700 dark:text-neutral-400">
         {desc}
       </p>
     </div>

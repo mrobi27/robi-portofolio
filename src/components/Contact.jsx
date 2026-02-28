@@ -2,99 +2,128 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 sm:py-32">
+    <section
+      id="contact"
+      aria-labelledby="contact-title"
+      className="py-24 sm:py-32"
+    >
       <div className="max-w-4xl mx-auto px-6 text-center">
 
-        {/* TITLE */}
-        <h2 className="text-2xl sm:text-3xl font-bold text-gradient mb-4">
+        {/* ===== TITLE ===== */}
+        <h2
+          id="contact-title"
+          className="section-title text-2xl sm:text-3xl mb-4 tracking-tight"
+        >
           Contact
         </h2>
 
-        <p className="text-slate-400 max-w-xl mx-auto mb-12 text-sm sm:text-base">
+        <p className="text-slate-400 theme-light:text-slate-600 max-w-xl mx-auto mb-14 text-sm sm:text-base leading-relaxed">
           Interested in collaboration, projects, or discussions around
           technology and cybersecurity? Feel free to reach out.
         </p>
 
-        {/* CONTACT CARD */}
+        {/* ===== CONTACT CARD ===== */}
         <div
           className="
             p-8 sm:p-10
             rounded-2xl
+
             border border-white/10
-            bg-white/[0.02]
-            backdrop-blur-sm
+            theme-light:border-slate-200
+
+            bg-white/[0.04]
+            theme-light:bg-white
+
+            shadow-xl
+            theme-light:shadow-md
+            theme-light:shadow-slate-200/70
+
+            backdrop-blur-md
+            transition-all duration-300
           "
         >
-          {/* NAME */}
-          <h3 className="text-lg sm:text-xl font-semibold text-white mb-1">
+          {/* ===== NAME ===== */}
+          <h3 className="text-lg sm:text-xl font-semibold text-slate-100 theme-light:text-slate-900 mb-1">
             Muhamad Robi Ardita
           </h3>
 
-          <p className="text-xs sm:text-sm text-slate-400 mb-8">
+          <p className="text-xs sm:text-sm text-slate-400 theme-light:text-slate-600 mb-10">
             Informatics Student • Cybersecurity & Frontend Enthusiast
           </p>
 
-          {/* LINKS */}
+          {/* ===== CONTACT LINKS ===== */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 mb-10">
 
             {/* EMAIL */}
-            <a
+            <ContactItem
               href="mailto:robyardita5@gmail.com"
-              className="
-                flex items-center gap-3
-                text-slate-300
-                hover:text-cyan-400
-                transition
-                text-sm sm:text-base
-              "
-            >
-              <FaEnvelope className="text-lg" />
-              <span className="break-all sm:break-normal">
-                robyardita5@gmail.com
-              </span>
-            </a>
+              label="Email"
+              text="robyardita5@gmail.com"
+              icon={<FaEnvelope />}
+            />
 
             {/* GITHUB */}
-            <a
+            <ContactItem
               href="https://github.com/mrobi27"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                flex items-center gap-3
-                text-slate-300
-                hover:text-cyan-400
-                transition
-                text-sm sm:text-base
-              "
-            >
-              <FaGithub className="text-lg" />
-              github.com/mrobi27
-            </a>
+              label="GitHub"
+              text="github.com/mrobi27"
+              icon={<FaGithub />}
+              external
+            />
 
             {/* LINKEDIN */}
-            <a
+            <ContactItem
               href="https://www.linkedin.com/in/muhamad-robi-ardita-2b1076328/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                flex items-center gap-3
-                text-slate-300
-                hover:text-cyan-400
-                transition
-                text-sm sm:text-base
-              "
-            >
-              <FaLinkedin className="text-lg" />
-              LinkedIn
-            </a>
+              label="LinkedIn"
+              text="LinkedIn"
+              icon={<FaLinkedin />}
+              external
+            />
           </div>
 
-          {/* FOOTER TEXT */}
-          <p className="text-[11px] sm:text-xs text-slate-500">
+          {/* ===== FOOTER ===== */}
+          <p className="text-[11px] sm:text-xs text-slate-500 theme-light:text-slate-500">
             © {new Date().getFullYear()} Muhamad Robi Ardita — Built with React & Tailwind
           </p>
         </div>
       </div>
     </section>
+  );
+}
+
+/* ===== CONTACT ITEM ===== */
+function ContactItem({ href, icon, text, external }) {
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : undefined}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="
+        group
+        flex items-center gap-3
+        px-4 py-2.5
+        rounded-full
+
+        border border-white/10
+        theme-light:border-slate-200
+
+        bg-white/[0.02]
+        theme-light:bg-white
+
+        text-slate-300
+        theme-light:text-slate-700
+
+        transition-all duration-300
+        hover:-translate-y-0.5
+        hover:border-cyan-400/40
+        hover:text-cyan-400
+        theme-light:hover:text-cyan-600
+      "
+    >
+      <span className="text-lg">{icon}</span>
+      <span className="text-sm sm:text-base break-all sm:break-normal">
+        {text}
+      </span>
+    </a>
   );
 }

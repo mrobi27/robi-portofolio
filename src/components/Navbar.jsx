@@ -10,31 +10,27 @@ const sections = [
   { id: "contact", label: "Contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar({ isLight, setIsLight }) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
   const [open, setOpen] = useState(false);
 
-  // background blur on scroll
+  /* SCROLL BLUR */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // active section observer
+  /* ACTIVE SECTION */
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
+          if (entry.isIntersecting) setActive(entry.target.id);
         });
       },
-      {
-        rootMargin: "-35% 0px -55% 0px",
-      }
+      { rootMargin: "-35% 0px -55% 0px" }
     );
 
     sections.forEach(({ id }) => {
@@ -49,14 +45,12 @@ export default function Navbar() {
     <a
       href={`#${id}`}
       onClick={() => mobile && setOpen(false)}
-      className={`
-        transition-all duration-200
+      className={`transition-all duration-200
         ${
           active === id
-            ? "text-white font-medium"
-            : "text-gray-400 hover:text-cyan-400"
-        }
-      `}
+            ? "text-[color:var(--text-main)] font-medium"
+            : "text-[color:var(--text-muted)] hover:text-cyan-400"
+        }`}
     >
       {label}
     </a>
@@ -64,40 +58,49 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`
-        fixed top-0 w-full z-50 transition-all duration-300
+      className={`fixed top-0 w-full z-50 transition-all duration-300
         ${
           scrolled
-            ? `
-              bg-[#020617]/40 backdrop-blur-sm
-              md:bg-[#020617]/70 md:backdrop-blur
-            `
+            ? "bg-[color:var(--bg-main)]/70 backdrop-blur border-b border-black/10"
             : "bg-transparent"
-        }
-      `}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* LOGO */}
         <a
           href="#home"
-          className="text-white font-bold text-lg tracking-wide hover:text-cyan-400 transition"
+          className="font-bold text-lg tracking-wide
+                     text-[color:var(--text-main)]
+                     hover:text-cyan-400 transition"
         >
           Robi
         </a>
 
         {/* DESKTOP MENU */}
-        <div className="hidden md:flex gap-8 text-sm">
+        <div className="hidden md:flex items-center gap-8 text-sm">
           {sections.map((s) => (
-            <NavLink key={s.id} id={s.id} label={s.label} />
+            <NavLink key={s.id} {...s} />
           ))}
+
+          {/* THEME TOGGLE */}
+          <button
+            onClick={() => setIsLight(!isLight)}
+            className="ml-2 p-2 rounded-full
+                       text-[color:var(--text-muted)]
+                       hover:text-[color:var(--text-main)]
+                       hover:bg-white/10 transition"
+            aria-label="Toggle theme"
+          >
+            {isLight ? "🌙" : "☀️"}
+          </button>
         </div>
 
         {/* MOBILE BUTTON */}
         <button
-          className="md:hidden text-gray-300 hover:text-white transition"
+          className="md:hidden text-[color:var(--text-muted)]
+                     hover:text-[color:var(--text-main)] transition"
           onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
         >
           {open ? <FaTimes size={20} /> : <FaBars size={20} />}
         </button>
@@ -105,16 +108,19 @@ export default function Navbar() {
 
       {/* MOBILE MENU */}
       {open && (
-      <div className="md:hidden bg-[#020617]/70 backdrop-blur-md">
+        <div className="md:hidden bg-[color:var(--bg-main)]/70 backdrop-blur-md">
           <div className="flex flex-col px-6 py-6 gap-4 text-sm">
             {sections.map((s) => (
-              <NavLink
-                key={s.id}
-                id={s.id}
-                label={s.label}
-                mobile
-              />
+              <NavLink key={s.id} {...s} mobile />
             ))}
+
+            <button
+              onClick={() => setIsLight(!isLight)}
+              className="mt-4 text-left text-[color:var(--text-muted)]
+                         hover:text-cyan-400 transition"
+            >
+              {isLight ? "Switch to Dark 🌙" : "Switch to Light ☀️"}
+            </button>
           </div>
         </div>
       )}

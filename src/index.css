@@ -1,20 +1,24 @@
 @import "tailwindcss";
 
-/* ===============================
-   THEME
-   =============================== */
+/* ======================================================
+   ROOT THEME (DARK DEFAULT)
+====================================================== */
 :root {
   --bg-main: #020617;
   --bg-surface: #020c1b;
   --text-main: #e5e7eb;
   --text-muted: #94a3b8;
+
   --accent-cyan: #38bdf8;
   --accent-red: #dc2626;
+
+  /* SECTION TITLE COLOR (KONSISTEN) */
+  --section-title: #94a3b8; /* slate-400 */
 }
 
-/* ===============================
+/* ======================================================
    RESET
-   =============================== */
+====================================================== */
 *,
 *::before,
 *::after {
@@ -33,49 +37,57 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system,
     BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.65;
-  position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* navbar fix */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-up {
-  animation: fadeUp 0.6s ease forwards;
-}
-
-/* ===============================
-   BACKGROUND LAYER (AMAN)
-   =============================== */
+/* ======================================================
+   BACKGROUND LAYERS
+====================================================== */
+.global-bg,
+.bg-dots,
+.bg-noise,
 .bg-layer {
+  pointer-events: none;
+  user-select: none;
+}
+
+.global-bg {
   position: fixed;
   inset: 0;
+  z-index: -50;
   background:
-    radial-gradient(
-      800px 400px at 20% 10%,
-      rgba(56, 189, 248, 0.05),
-      transparent 60%
-    ),
-    radial-gradient(
-      800px 400px at 80% 80%,
-      rgba(220, 38, 38, 0.04),
-      transparent 60%
-    );
-  pointer-events: none;
-  z-index: 0;
+    radial-gradient(1200px circle at 12% 10%, rgba(56,189,248,0.18), transparent 42%),
+    radial-gradient(1000px circle at 88% 22%, rgba(168,85,247,0.18), transparent 46%),
+    radial-gradient(900px circle at 50% 85%, rgba(14,165,233,0.14), transparent 48%),
+    var(--bg-main);
 }
 
-/* ===============================
-   TEXT
-   =============================== */
+.bg-dots {
+  position: fixed;
+  inset: 0;
+  z-index: -40;
+  background-image: radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px);
+  background-size: 22px 22px;
+  opacity: 0.35;
+  animation: dotsMove 45s linear infinite;
+}
+
+.bg-noise {
+  position: fixed;
+  inset: 0;
+  z-index: -30;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
+  opacity: 0.25;
+}
+
+@keyframes dotsMove {
+  from { background-position: 0 0; }
+  to { background-position: 220px 220px; }
+}
+
+/* ======================================================
+   TYPOGRAPHY
+====================================================== */
 p {
   color: var(--text-muted);
 }
@@ -85,20 +97,31 @@ a {
   transition: color 0.2s ease;
 }
 
-/* ===============================
-   TEXT GRADIENT (STATIC, NO MOVE)
-   =============================== */
-.text-gradient {
-  background: linear-gradient(
-    90deg,
-    var(--accent-cyan),
-    var(--accent-red)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+h1, h2, h3 {
+  color: var(--text-main);
 }
 
-.animated-gradient {
+/* ======================================================
+   SECTION TITLE (PENTING)
+   - TIDAK GRADIENT
+   - TIDAK IKUT THEME
+   - BEDA DARI NAMA
+====================================================== */
+.section-title {
+  color: var(--section-title);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.theme-light .section-title {
+  color: var(--section-title);
+}
+
+/* ======================================================
+   GRADIENT TEXT (NAMA SAJA)
+====================================================== */
+.animated-gradient,
+.text-gradient {
   background: linear-gradient(
     90deg,
     #38bdf8,
@@ -118,120 +141,57 @@ a {
   100% { background-position: 0% 50%; }
 }
 
-/* ===============================
-   IMAGE / CARD STYLE (NO ANIMATION)
-   =============================== */
-.img-frame {
-  border-radius: 1.25rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #000;
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.6),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
-}
-
-.photo-interactive {
-  box-shadow:
-    0 30px 60px rgba(220, 38, 38, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
-}
-
-/* ===============================
-   SURFACE / CARD
-   =============================== */
+/* ======================================================
+   CARD / SURFACE
+====================================================== */
 .surface {
   background: var(--bg-surface);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 1rem;
 }
 
-/* ===============================
-   SCROLLBAR
-   =============================== */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-main);
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 999px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.35);
-}
-
-/* ===============================
-   SELECTION
-   =============================== */
-::selection {
-  background: var(--accent-cyan);
-  color: #020617;
-}
-
-/* ===== TECH STACK MARQUEE ===== */
+/* ======================================================
+   TECH STACK (JANGAN DISENTUH)
+====================================================== */
 .tech-wrapper {
   overflow: hidden;
-  padding: 24px 0; 
+  padding: 24px 0;
 }
 
 .tech-marquee {
   display: flex;
   align-items: center;
   width: max-content;
-  animation: marqueeMove 14s linear infinite; 
-}
-
-@keyframes marqueeMove {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  animation: marqueeMove 14s linear infinite;
 }
 
 .tech-item {
   min-width: 120px;
-  height: 120px;             
+  height: 120px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  line-height: 1;         
-  padding-top: 10px;
 }
 
-/* =========================
-   SOFT BLUR ENTER / EXIT
-========================= */
-.blur-enter {
-  opacity: 0;
-  filter: blur(6px);
-  transform: translateY(24px);
+@keyframes marqueeMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-.animate-fade-up.blur-enter {
-  animation: blurIn 0.8s ease-out forwards;
+/* ======================================================
+   ANIMATION
+====================================================== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes blurIn {
-  to {
-    opacity: 1;
-    filter: blur(0);
-    transform: translateY(0);
-  }
+.animate-fade-up {
+  animation: fadeUp 0.6s ease forwards;
 }
 
-
-/* responsive fix */
-/* Cursor typing */
 .typing-cursor {
-  display: inline-block;
   margin-left: 2px;
   animation: blink 1s infinite;
 }
@@ -241,80 +201,113 @@ a {
   25%, 75% { opacity: 0; }
 }
 
-/* Gradient modern kiri → kanan */
-.animated-gradient {
-  background: linear-gradient(
-    90deg,
-    #38bdf8,
-    #22d3ee,
-    #a855f7,
-    #ec4899
-  );
-  background-size: 300% 300%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradientMove 6s ease infinite;
+/* ======================================================
+   NAVBAR + TOGGLE ICON
+====================================================== */
+nav svg {
+  color: #e5e7eb;
+  transition: color 0.25s ease;
 }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+nav button:hover svg {
+  color: var(--accent-cyan);
 }
 
-/* =========================
-   GLOBAL BACKGROUND (NO GRAY)
-========================= */
-.global-bg {
+/* ======================================================
+   AURORA BACKGROUND (FINAL)
+====================================================== */
+
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -40;
+  pointer-events: none;
   background:
     radial-gradient(
-      1200px circle at 12% 10%,
-      rgba(56,189,248,0.18),
-      transparent 42%
+      600px circle at 15% 20%,
+      rgba(56, 189, 248, 0.25),
+      transparent 60%
     ),
     radial-gradient(
-      1000px circle at 88% 22%,
-      rgba(168,85,247,0.18),
-      transparent 46%
+      700px circle at 85% 30%,
+      rgba(168, 85, 247, 0.25),
+      transparent 65%
     ),
     radial-gradient(
-      900px circle at 50% 85%,
-      rgba(14,165,233,0.14),
-      transparent 48%
-    ),
-    #020617;
-}
-
-/* =========================
-   DOT GRID
-========================= */
-.bg-dots {
-  background-image:
-    radial-gradient(
-      rgba(255,255,255,0.07) 1px,
-      transparent 1px
+      500px circle at 50% 85%,
+      rgba(14, 165, 233, 0.2),
+      transparent 60%
     );
-  background-size: 22px 22px;
-  opacity: 0.35;
-  animation: dotsMove 45s linear infinite;
-}
-
-@keyframes dotsMove {
-  from { background-position: 0 0; }
-  to { background-position: 220px 220px; }
+  filter: blur(40px);
 }
 
 /* =========================
-   NOISE / GRAIN
+   LIGHT MODE — FINAL FIX
 ========================= */
-.bg-noise {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E");
-  opacity: 0.25;
+
+.theme-light {
+  --bg-main: #ffffff;
+  --bg-surface: #ffffff;
+  --text-main: #020617;
+  --text-muted: #475569;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .global-bg,
-  .bg-dots {
-    animation: none !important;
-  }
+.theme-light body {
+  background: transparent;
+}
+
+.theme-light .global-bg {
+  background: #ffffff;
+}
+
+.theme-light .bg-noise,
+.theme-light .bg-dots {
+  display: none;
+}
+
+/* ======================================================
+   NEON AURORA CIRCLE (FINAL)
+   - Pengganti dots
+   - Transparan
+   - Neon
+====================================================== */
+
+.aurora-circle {
+  position: fixed;
+  inset: 0;
+  z-index: -40;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      500px circle at 20% 30%,
+      rgba(56, 189, 248, 0.35),
+      transparent 65%
+    ),
+    radial-gradient(
+      600px circle at 80% 35%,
+      rgba(168, 85, 247, 0.35),
+      transparent 70%
+    ),
+    radial-gradient(
+      450px circle at 50% 75%,
+      rgba(34, 211, 238, 0.30),
+      transparent 65%
+    );
+  filter: blur(45px);
+}
+
+/* LIGHT MODE — AURORA LEBIH SOFT */
+.theme-light .aurora-circle {
+  background:
+    radial-gradient(
+      550px circle at 25% 30%,
+      rgba(56, 189, 248, 0.18),
+      transparent 70%
+    ),
+    radial-gradient(
+      650px circle at 75% 35%,
+      rgba(168, 85, 247, 0.18),
+      transparent 75%
+    );
+  filter: blur(60px);
 }
