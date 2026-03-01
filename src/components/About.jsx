@@ -7,7 +7,9 @@ export default function About() {
         scroll-mt-24 sm:scroll-mt-32
         py-24 sm:py-32
         relative overflow-hidden
-        bg-white dark:bg-transparent
+
+        bg-white/[0.02]
+        theme-light:bg-white
       "
     >
       <div
@@ -25,22 +27,21 @@ export default function About() {
             className="
               section-title
               text-2xl sm:text-3xl
-              mb-5
-              font-semibold
-              text-neutral-950 dark:text-neutral-100
+              mb-5 font-semibold
+              text-slate-100
+              theme-light:text-slate-900
             "
           >
             About Me
           </h2>
 
-          {/* PARAGRAPH 1 */}
-          <p className="leading-7 mb-4 text-sm sm:text-base font-medium text-neutral-900 dark:text-neutral-300">
+          <p className="leading-7 mb-4 text-sm sm:text-base font-medium text-slate-300 theme-light:text-slate-700">
             I am an Informatics student with a strong interest in modern
-            technology, particularly in front-end development UI/UX design, and cybersecurity.
+            technology, particularly in front-end development, UI/UX design,
+            and cybersecurity.
           </p>
 
-          {/* PARAGRAPH 2 */}
-          <p className="leading-7 mb-4 text-sm sm:text-base text-neutral-900 dark:text-neutral-300">
+          <p className="leading-7 mb-4 text-sm sm:text-base text-slate-400 theme-light:text-slate-600">
             I enjoy crafting clean and intuitive interfaces, transforming
             design concepts into responsive and user-friendly web applications.
             Alongside front-end development, I actively explore cybersecurity
@@ -48,8 +49,7 @@ export default function About() {
             analytical thinking and problem-solving skills.
           </p>
 
-          {/* PARAGRAPH 3 */}
-          <p className="leading-7 text-sm sm:text-base text-neutral-900 dark:text-neutral-300">
+          <p className="leading-7 text-sm sm:text-base text-slate-400 theme-light:text-slate-600">
             Currently, I am continuously improving my skills in modern
             JavaScript frameworks, accessibility-focused design, and secure web
             development practices.
@@ -67,25 +67,25 @@ export default function About() {
           <SkillCard
             title="Front-End Development"
             desc="Responsive UI & modern web interfaces"
-            gradient="from-cyan-500/20 via-transparent to-blue-500/20"
+            gradient="from-cyan-400/20 via-transparent to-blue-500/20"
           />
 
           <SkillCard
             title="UI / UX Design"
             desc="Wireframing, prototyping & visual systems"
-            gradient="from-purple-500/20 via-transparent to-cyan-500/20"
+            gradient="from-purple-400/20 via-transparent to-cyan-400/20"
           />
 
           <SkillCard
             title="Cybersecurity"
             desc="CTF challenges & security fundamentals"
-            gradient="from-red-500/20 via-transparent to-orange-500/20"
+            gradient="from-red-400/20 via-transparent to-orange-400/20"
           />
 
           <SkillCard
             title="Problem Solving"
             desc="Logic, analysis & debugging mindset"
-            gradient="from-emerald-500/20 via-transparent to-cyan-500/20"
+            gradient="from-emerald-400/20 via-transparent to-cyan-400/20"
           />
         </div>
       </div>
@@ -101,14 +101,23 @@ function SkillCard({ title, desc, gradient }) {
         group relative
         p-5 sm:p-6
         rounded-xl
-        border border-neutral-200 dark:border-white/10
-        bg-white dark:bg-white/[0.03]
-        backdrop-blur-sm
-        shadow-sm dark:shadow-none
+
+        border border-white/10
+        theme-light:border-slate-200
+
+        bg-white/[0.04]
+        theme-light:bg-white
+
+        backdrop-blur-md
+        shadow-xl
+        theme-light:shadow-md
+        theme-light:shadow-slate-200/70
+
         overflow-hidden
         transition-all duration-300
         hover:-translate-y-1
-        hover:shadow-md dark:hover:shadow-none
+        hover:shadow-2xl
+        theme-light:hover:shadow-slate-300/80
       "
     >
       {/* glow aura */}
@@ -123,11 +132,11 @@ function SkillCard({ title, desc, gradient }) {
         `}
       />
 
-      <h3 className="relative mb-1 text-sm sm:text-base font-semibold text-neutral-950 dark:text-neutral-200">
+      <h3 className="relative mb-1 text-sm sm:text-base font-semibold text-slate-100 theme-light:text-slate-900">
         {title}
       </h3>
 
-      <p className="relative text-xs sm:text-sm text-neutral-700 dark:text-neutral-400">
+      <p className="relative text-xs sm:text-sm text-slate-400 theme-light:text-slate-600">
         {desc}
       </p>
     </div>
