@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ctfJuara3 from "../assets/foto/serJuara3.png";
 import gsaCert from "../assets/foto/serGSA.png";
-import ctfJuara2 from "../assets/foto/Juara2CTF.png";
+import ctfJuara2 from "../assets/foto/Juara2Ctf.png";
 
 export default function Certificates() {
   const [activeCert, setActiveCert] = useState(null);
