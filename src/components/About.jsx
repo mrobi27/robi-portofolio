@@ -7,9 +7,7 @@ export default function About() {
         scroll-mt-24 sm:scroll-mt-32
         py-24 sm:py-32
         relative overflow-hidden
-
-        bg-white/[0.02]
-        theme-light:bg-white
+        bg-transparent
       "
     >
       <div
@@ -28,20 +26,29 @@ export default function About() {
               section-title
               text-2xl sm:text-3xl
               mb-5 font-semibold
-              text-slate-100
-              theme-light:text-slate-900
             "
           >
             About Me
           </h2>
 
-          <p className="leading-7 mb-4 text-sm sm:text-base font-medium text-slate-300 theme-light:text-slate-700">
+          <p className="
+            leading-7 mb-4
+            text-sm sm:text-base
+            font-medium
+            text-slate-300
+            theme-light:text-slate-800
+          ">
             I am an Informatics student with a strong interest in modern
             technology, particularly in front-end development, UI/UX design,
             and cybersecurity.
           </p>
 
-          <p className="leading-7 mb-4 text-sm sm:text-base text-slate-400 theme-light:text-slate-600">
+          <p className="
+            leading-7 mb-4
+            text-sm sm:text-base
+            text-slate-400
+            theme-light:text-slate-700
+          ">
             I enjoy crafting clean and intuitive interfaces, transforming
             design concepts into responsive and user-friendly web applications.
             Alongside front-end development, I actively explore cybersecurity
@@ -49,7 +56,12 @@ export default function About() {
             analytical thinking and problem-solving skills.
           </p>
 
-          <p className="leading-7 text-sm sm:text-base text-slate-400 theme-light:text-slate-600">
+          <p className="
+            leading-7
+            text-sm sm:text-base
+            text-slate-400
+            theme-light:text-slate-700
+          ">
             Currently, I am continuously improving my skills in modern
             JavaScript frameworks, accessibility-focused design, and secure web
             development practices.
@@ -132,11 +144,22 @@ function SkillCard({ title, desc, gradient }) {
         `}
       />
 
-      <h3 className="relative mb-1 text-sm sm:text-base font-semibold text-slate-100 theme-light:text-slate-900">
+      <h3 className="
+        relative mb-1
+        text-sm sm:text-base
+        font-semibold
+        text-slate-100
+        theme-light:text-slate-900
+      ">
         {title}
       </h3>
 
-      <p className="relative text-xs sm:text-sm text-slate-400 theme-light:text-slate-600">
+      <p className="
+        relative
+        text-xs sm:text-sm
+        text-slate-400
+        theme-light:text-slate-600
+      ">
         {desc}
       </p>
     </div>

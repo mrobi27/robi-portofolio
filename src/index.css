@@ -244,7 +244,7 @@ nav button:hover svg {
 /* =========================
    LIGHT MODE — FINAL FIX
 ========================= */
-
+/* LIGHT MODE — FIX FINAL */
 .theme-light {
   --bg-main: #ffffff;
   --bg-surface: #ffffff;
@@ -253,16 +253,21 @@ nav button:hover svg {
 }
 
 .theme-light body {
-  background: transparent;
+  background: var(--bg-main);
 }
 
 .theme-light .global-bg {
-  background: #ffffff;
+  background: var(--bg-main);
 }
 
 .theme-light .bg-noise,
 .theme-light .bg-dots {
   display: none;
+}
+
+html, body {
+  min-height: 100%;
+  overscroll-behavior-y: none;
 }
 
 /* ======================================================
