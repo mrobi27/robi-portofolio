@@ -1,114 +1,106 @@
-import { useState, useEffect } from "react";
-import ctfCert from "../assets/foto/serJuara3.png";
-import gsaCert from "../assets/foto/serGSA.png";
-
-export default function Certificates() {
-  const [activeCert, setActiveCert] = useState(null);
-
-  // lock scroll when modal open
-  useEffect(() => {
-    document.body.style.overflow = activeCert ? "hidden" : "";
-    return () => (document.body.style.overflow = "");
-  }, [activeCert]);
-
+export default function About() {
   return (
     <section
-      id="certificates"
-      aria-labelledby="certificates-title"
-      className="py-24 sm:py-32"
+      id="about"
+      aria-labelledby="about-title"
+      className="
+        scroll-mt-24 sm:scroll-mt-32
+        py-24 sm:py-32
+        relative overflow-hidden
+
+        bg-white/[0.02]
+        theme-light:bg-white
+      "
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div
+        className="
+          max-w-6xl mx-auto px-6
+          grid md:grid-cols-2
+          gap-12 md:gap-20
+          items-start
+        "
+      >
+        {/* ===== LEFT : ABOUT TEXT ===== */}
+        <div className="animate-fade-up text-center md:text-left">
+          <h2
+            id="about-title"
+            className="
+              section-title
+              text-2xl sm:text-3xl
+              mb-5 font-semibold
+              text-slate-100
+              theme-light:text-slate-900
+            "
+          >
+            About Me
+          </h2>
 
-        {/* ===== TITLE ===== */}
-        <h2
-          id="certificates-title"
-          className="section-title text-2xl sm:text-3xl mb-4 tracking-tight text-center"
+          <p className="leading-7 mb-4 text-sm sm:text-base font-medium text-slate-300 theme-light:text-slate-700">
+            I am an Informatics student with a strong interest in modern
+            technology, particularly in front-end development, UI/UX design,
+            and cybersecurity.
+          </p>
+
+          <p className="leading-7 mb-4 text-sm sm:text-base text-slate-400 theme-light:text-slate-600">
+            I enjoy crafting clean and intuitive interfaces, transforming
+            design concepts into responsive and user-friendly web applications.
+            Alongside front-end development, I actively explore cybersecurity
+            fundamentals and participate in CTF challenges to sharpen my
+            analytical thinking and problem-solving skills.
+          </p>
+
+          <p className="leading-7 text-sm sm:text-base text-slate-400 theme-light:text-slate-600">
+            Currently, I am continuously improving my skills in modern
+            JavaScript frameworks, accessibility-focused design, and secure web
+            development practices.
+          </p>
+        </div>
+
+        {/* ===== RIGHT : SKILL HIGHLIGHTS ===== */}
+        <div
+          className="
+            grid grid-cols-1 sm:grid-cols-2
+            gap-4 sm:gap-6
+            animate-fade-up animate-delay-2
+          "
         >
-          Achievements & Certificates
-        </h2>
-
-        <p className="text-slate-400 theme-light:text-slate-600 max-w-xl mx-auto text-center mb-16 text-sm sm:text-base leading-relaxed">
-          Verified achievements and recognitions highlighting my journey
-          in cybersecurity, leadership, and technology communities.
-        </p>
-
-        {/* ===== CERT GRID ===== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <CertificateCard
-            image={ctfCert}
-            alt="CTF Kaliber – 3rd Place"
-            title="3rd Place – Capture The Flag (CTF)"
-            desc="Awarded by LSO Kaliber UMM for achieving 3rd place in a cybersecurity Capture The Flag competition."
-            tags={[
-              "Web Exploitation",
-              "Cryptography",
-              "OSINT",
-              "Cybersecurity",
-            ]}
-            onClick={() => setActiveCert(ctfCert)}
+          <SkillCard
+            title="Front-End Development"
+            desc="Responsive UI & modern web interfaces"
+            gradient="from-cyan-400/20 via-transparent to-blue-500/20"
           />
 
-          <CertificateCard
-            image={gsaCert}
-            alt="Google Student Ambassador"
-            title="Google Student Ambassador – Class of 2025"
-            desc="Selected as a Google Student Ambassador for leadership, community contribution, and advocacy of Google technologies."
-            tags={[
-              "Leadership",
-              "Community",
-              "Google AI",
-              "Technology Advocacy",
-            ]}
-            onClick={() => setActiveCert(gsaCert)}
+          <SkillCard
+            title="UI / UX Design"
+            desc="Wireframing, prototyping & visual systems"
+            gradient="from-purple-400/20 via-transparent to-cyan-400/20"
+          />
+
+          <SkillCard
+            title="Cybersecurity"
+            desc="CTF challenges & security fundamentals"
+            gradient="from-red-400/20 via-transparent to-orange-400/20"
+          />
+
+          <SkillCard
+            title="Problem Solving"
+            desc="Logic, analysis & debugging mindset"
+            gradient="from-emerald-400/20 via-transparent to-cyan-400/20"
           />
         </div>
       </div>
-
-      {/* ===== MODAL / LIGHTBOX ===== */}
-      {activeCert && (
-        <div
-          onClick={() => setActiveCert(null)}
-          className="
-            fixed inset-0 z-50
-            bg-black/80 backdrop-blur-md
-            flex items-center justify-center
-            p-6
-          "
-        >
-          <img
-            src={activeCert}
-            alt="Certificate Preview"
-            className="max-w-full max-h-[90vh] rounded-xl shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          />
-
-          <button
-            onClick={() => setActiveCert(null)}
-            aria-label="Close preview"
-            className="
-              absolute top-6 right-6
-              text-white text-3xl
-              hover:opacity-70
-              transition-opacity
-            "
-          >
-            ✕
-          </button>
-        </div>
-      )}
     </section>
   );
 }
 
-/* ===== CERTIFICATE CARD ===== */
-function CertificateCard({ image, alt, title, desc, tags, onClick }) {
+/* ===== REUSABLE SKILL CARD ===== */
+function SkillCard({ title, desc, gradient }) {
   return (
     <div
-      onClick={onClick}
       className="
-        group
-        cursor-pointer
-        p-5 rounded-xl
+        group relative
+        p-5 sm:p-6
+        rounded-xl
 
         border border-white/10
         theme-light:border-slate-200
@@ -116,64 +108,37 @@ function CertificateCard({ image, alt, title, desc, tags, onClick }) {
         bg-white/[0.04]
         theme-light:bg-white
 
+        backdrop-blur-md
         shadow-xl
         theme-light:shadow-md
         theme-light:shadow-slate-200/70
 
-        backdrop-blur-md
+        overflow-hidden
         transition-all duration-300
         hover:-translate-y-1
         hover:shadow-2xl
         theme-light:hover:shadow-slate-300/80
       "
     >
-      {/* IMAGE */}
-      <div className="overflow-hidden rounded-lg mb-4">
-        <img
-          src={image}
-          alt={alt}
-          className="
-            w-full object-cover
-            transition-transform duration-300
-            group-hover:scale-105
-          "
-        />
-      </div>
+      {/* glow aura */}
+      <div
+        className={`
+          absolute inset-0
+          opacity-0 group-hover:opacity-100
+          transition duration-300
+          bg-gradient-to-br ${gradient}
+          blur-xl
+          pointer-events-none
+        `}
+      />
 
-      {/* TITLE */}
-      <h3
-        className="
-          text-slate-100 theme-light:text-slate-900
-          font-semibold mb-2
-          group-hover:text-cyan-400
-          transition-colors
-        "
-      >
+      <h3 className="relative mb-1 text-sm sm:text-base font-semibold text-slate-100 theme-light:text-slate-900">
         {title}
       </h3>
 
-      {/* DESC */}
-      <p className="text-sm text-slate-400 theme-light:text-slate-600 leading-relaxed mb-3">
+      <p className="relative text-xs sm:text-sm text-slate-400 theme-light:text-slate-600">
         {desc}
       </p>
-
-      {/* TAGS */}
-      <div className="flex flex-wrap gap-2">
-        {tags.map((tag, i) => (
-          <span
-            key={i}
-            className="
-              text-xs font-medium
-              px-2 py-1 rounded-full
-
-              bg-cyan-400/10 text-cyan-400
-              theme-light:bg-cyan-600/10 theme-light:text-cyan-600
-            "
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
     </div>
   );
 }
