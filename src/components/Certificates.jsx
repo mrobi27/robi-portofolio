@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import ctfCert from "../assets/foto/serJuara3.png";
+import ctfJuara3 from "../assets/foto/serJuara3.png";
 import gsaCert from "../assets/foto/serGSA.png";
+import ctfJuara2 from "../assets/foto/Juara2CTF.png";
 
 export default function Certificates() {
   const [activeCert, setActiveCert] = useState(null);
@@ -18,7 +19,6 @@ export default function Certificates() {
       className="py-24 sm:py-32"
     >
       <div className="max-w-6xl mx-auto px-6">
-
         {/* ===== TITLE ===== */}
         <h2
           id="certificates-title"
@@ -34,20 +34,37 @@ export default function Certificates() {
 
         {/* ===== CERT GRID ===== */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* JUARA 2 — SEASON 2 */}
           <CertificateCard
-            image={ctfCert}
-            alt="CTF Kaliber – 3rd Place"
-            title="3rd Place – Capture The Flag (CTF)"
-            desc="Awarded by LSO Kaliber UMM for achieving 3rd place in a cybersecurity Capture The Flag competition."
+            image={ctfJuara2}
+            alt="CTF LSO Kaliber Season 2 – Juara 2"
+            title="2nd Place – Capture The Flag (CTF) | Season 2"
+            desc="Awarded by LSO Kaliber UMM for achieving 2nd place in the Capture The Flag (CTF) Season 2 competition, testing skills in Web Exploitation, Cryptography, OSINT, and cybersecurity."
             tags={[
               "Web Exploitation",
               "Cryptography",
               "OSINT",
               "Cybersecurity",
             ]}
-            onClick={() => setActiveCert(ctfCert)}
+            onClick={() => setActiveCert(ctfJuara2)}
           />
 
+          {/* JUARA 3 — SEASON 1 */}
+          <CertificateCard
+            image={ctfJuara3}
+            alt="CTF LSO Kaliber Season 1 – Juara 3"
+            title="3rd Place – Capture The Flag (CTF) | Season 1"
+            desc="Awarded by LSO Kaliber UMM for achieving 3rd place in the Capture The Flag (CTF) Season 1 competition."
+            tags={[
+              "Web Exploitation",
+              "Cryptography",
+              "OSINT",
+              "Cybersecurity",
+            ]}
+            onClick={() => setActiveCert(ctfJuara3)}
+          />
+
+          {/* GOOGLE STUDENT AMBASSADOR */}
           <CertificateCard
             image={gsaCert}
             alt="Google Student Ambassador"
@@ -106,8 +123,7 @@ function CertificateCard({ image, alt, title, desc, tags, onClick }) {
     <div
       onClick={onClick}
       className="
-        group
-        cursor-pointer
+        group cursor-pointer
         p-5 rounded-xl
 
         border border-white/10
@@ -127,7 +143,6 @@ function CertificateCard({ image, alt, title, desc, tags, onClick }) {
         theme-light:hover:shadow-slate-300/80
       "
     >
-      {/* IMAGE */}
       <div className="overflow-hidden rounded-lg mb-4">
         <img
           src={image}
@@ -140,7 +155,6 @@ function CertificateCard({ image, alt, title, desc, tags, onClick }) {
         />
       </div>
 
-      {/* TITLE */}
       <h3
         className="
           text-slate-100 theme-light:text-slate-900
@@ -152,12 +166,10 @@ function CertificateCard({ image, alt, title, desc, tags, onClick }) {
         {title}
       </h3>
 
-      {/* DESC */}
       <p className="text-sm text-slate-400 theme-light:text-slate-600 leading-relaxed mb-3">
         {desc}
       </p>
 
-      {/* TAGS */}
       <div className="flex flex-wrap gap-2">
         {tags.map((tag, i) => (
           <span
@@ -165,7 +177,6 @@ function CertificateCard({ image, alt, title, desc, tags, onClick }) {
             className="
               text-xs font-medium
               px-2 py-1 rounded-full
-
               bg-cyan-400/10 text-cyan-400
               theme-light:bg-cyan-600/10 theme-light:text-cyan-600
             "
