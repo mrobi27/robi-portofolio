@@ -82,20 +82,31 @@ export default function Projects() {
       <div className="max-w-6xl mx-auto px-6">
 
         {/* ===== TITLE ===== */}
-        <h2
-          id="projects-title"
-          className="section-title text-2xl sm:text-3xl mb-4 tracking-tight text-center"
-        >
-          Projects
-        </h2>
+        <div className="text-center mb-16">
 
-        <p className="text-slate-400 theme-light:text-slate-600 text-sm sm:text-base max-w-xl mx-auto text-center mb-16 leading-relaxed">
-          Selected projects demonstrating practical implementation, system
-          exploration, and security-oriented problem solving.
-        </p>
+          <h2
+            id="projects-title"
+            className="
+              text-4xl sm:text-5xl font-bold
+              bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500
+              bg-clip-text text-transparent
+              tracking-tight
+              drop-shadow-[0_0_14px_rgba(56,189,248,0.35)]
+            "
+          >
+            Projects
+          </h2>
+
+          <p className="text-slate-400 theme-light:text-slate-600 text-sm sm:text-base max-w-xl mx-auto mt-4 leading-relaxed">
+            Selected projects demonstrating practical implementation, system
+            exploration, and security-oriented problem solving.
+          </p>
+
+        </div>
 
         {/* ===== PROJECT GRID ===== */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
           {projects.map((p, i) => {
             const style = categoryStyle[p.category];
 
@@ -120,14 +131,16 @@ export default function Projects() {
 
                   backdrop-blur-md
                   transition-all duration-300
-                  hover:-translate-y-1
+                  hover:-translate-y-2
                   hover:shadow-2xl
                   theme-light:hover:shadow-slate-300/80
                 `}
               >
-                {/* ===== CONTENT ===== */}
-                <div className="space-y-3">
-                  <h3 className="text-base font-semibold text-slate-100 theme-light:text-slate-900 group-hover:text-cyan-400 transition-colors">
+
+                {/* CONTENT */}
+                <div className="space-y-4">
+
+                  <h3 className="text-lg font-semibold text-slate-100 theme-light:text-slate-900 group-hover:text-cyan-400 transition-colors">
                     {p.title}
                   </h3>
 
@@ -150,17 +163,19 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
+
                 </div>
 
-                {/* ===== LINKS ===== */}
-                <div className="flex gap-4 mt-6 text-slate-400 theme-light:text-slate-700">
+                {/* LINKS */}
+                <div className="flex gap-4 mt-6 text-slate-400 theme-light:text-slate-700 text-lg">
+
                   {p.github && (
                     <a
                       href={p.github}
                       target="_blank"
                       rel="noreferrer"
                       aria-label="GitHub Repository"
-                      className="hover:text-white theme-light:hover:text-slate-900 transition-colors"
+                      className="hover:text-cyan-400 transition-colors"
                     >
                       <FaGithub />
                     </a>
@@ -172,7 +187,7 @@ export default function Projects() {
                       target="_blank"
                       rel="noreferrer"
                       aria-label="Figma Design"
-                      className="hover:text-white theme-light:hover:text-slate-900 transition-colors"
+                      className="hover:text-purple-400 transition-colors"
                     >
                       <FaFigma />
                     </a>
@@ -184,15 +199,18 @@ export default function Projects() {
                       target="_blank"
                       rel="noreferrer"
                       aria-label="Live Demo"
-                      className="hover:text-white theme-light:hover:text-slate-900 transition-colors"
+                      className="hover:text-emerald-400 transition-colors"
                     >
                       <FaExternalLinkAlt />
                     </a>
                   )}
+
                 </div>
+
               </div>
             );
           })}
+
         </div>
       </div>
     </section>

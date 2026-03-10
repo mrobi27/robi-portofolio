@@ -4,7 +4,7 @@ export default function About() {
       id="about"
       aria-labelledby="about-title"
       className="
-        scroll-mt-24 sm:scroll-mt-32
+        scroll-mt-6 sm:scroll-mt-9
         py-24 sm:py-32
         relative overflow-hidden
         bg-transparent
@@ -20,12 +20,16 @@ export default function About() {
       >
         {/* ===== LEFT : ABOUT TEXT ===== */}
         <div className="animate-fade-up text-center md:text-left">
+
           <h2
             id="about-title"
             className="
-              section-title
-              text-2xl sm:text-3xl
-              mb-5 font-semibold
+              text-4xl sm:text-5xl font-bold
+              mb-6
+              bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500
+              bg-clip-text text-transparent
+              tracking-tight
+              drop-shadow-[0_0_14px_rgba(56,189,248,0.35)]
             "
           >
             About Me
@@ -40,7 +44,8 @@ export default function About() {
           ">
             I am an Informatics student with a strong interest in modern
             technology, particularly in front-end development, UI/UX design,
-            and cybersecurity.
+            cybersecurity, and data processing tools such as Microsoft Excel
+            and Microsoft Word.
           </p>
 
           <p className="
@@ -62,10 +67,13 @@ export default function About() {
             text-slate-400
             theme-light:text-slate-700
           ">
-            Currently, I am continuously improving my skills in modern
-            JavaScript frameworks, accessibility-focused design, and secure web
-            development practices.
+            In addition, I am experienced in using Microsoft Excel for data
+            analysis and spreadsheet automation, as well as Microsoft Word for
+            structured documentation and technical reports. Currently, I am
+            continuously improving my skills in modern JavaScript frameworks,
+            accessibility-focused design, and secure web development practices.
           </p>
+
         </div>
 
         {/* ===== RIGHT : SKILL HIGHLIGHTS ===== */}
@@ -76,6 +84,7 @@ export default function About() {
             animate-fade-up animate-delay-2
           "
         >
+
           <SkillCard
             title="Front-End Development"
             desc="Responsive UI & modern web interfaces"
@@ -99,13 +108,28 @@ export default function About() {
             desc="Logic, analysis & debugging mindset"
             gradient="from-emerald-400/20 via-transparent to-cyan-400/20"
           />
+
+          <SkillCard
+            title="Microsoft Excel"
+            desc="Advanced spreadsheet analysis & data organization"
+            gradient="from-green-400/20 via-transparent to-emerald-400/20"
+          />
+
+          <SkillCard
+            title="Microsoft Word"
+            desc="Professional documentation & technical writing"
+            gradient="from-blue-400/20 via-transparent to-indigo-400/20"
+          />
+
         </div>
       </div>
     </section>
   );
 }
 
+
 /* ===== REUSABLE SKILL CARD ===== */
+
 function SkillCard({ title, desc, gradient }) {
   return (
     <div
@@ -132,6 +156,7 @@ function SkillCard({ title, desc, gradient }) {
         theme-light:hover:shadow-slate-300/80
       "
     >
+
       {/* glow aura */}
       <div
         className={`
@@ -144,24 +169,31 @@ function SkillCard({ title, desc, gradient }) {
         `}
       />
 
-      <h3 className="
-        relative mb-1
-        text-sm sm:text-base
-        font-semibold
-        text-slate-100
-        theme-light:text-slate-900
-      ">
+      {/* TITLE */}
+      <h3
+        className="
+          relative mb-1
+          text-sm sm:text-base
+          font-semibold
+          text-cyan-400
+          drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]
+        "
+      >
         {title}
       </h3>
 
-      <p className="
-        relative
-        text-xs sm:text-sm
-        text-slate-400
-        theme-light:text-slate-600
-      ">
+      {/* DESC */}
+      <p
+        className="
+          relative
+          text-xs sm:text-sm
+          text-slate-400
+          theme-light:text-slate-600
+        "
+      >
         {desc}
       </p>
+
     </div>
   );
 }

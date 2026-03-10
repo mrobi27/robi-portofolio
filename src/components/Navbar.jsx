@@ -30,7 +30,7 @@ export default function Navbar({ isLight, setIsLight }) {
           if (entry.isIntersecting) setActive(entry.target.id);
         });
       },
-      { rootMargin: "-35% 0px -55% 0px" }
+      { rootMargin: "-40% 0px -50% 0px" }
     );
 
     sections.forEach(({ id }) => {
@@ -45,40 +45,58 @@ export default function Navbar({ isLight, setIsLight }) {
     <a
       href={`#${id}`}
       onClick={() => mobile && setOpen(false)}
-      className={`transition-all duration-200
+      className={`
+        relative text-sm transition-colors duration-200
         ${
           active === id
-            ? "text-[color:var(--text-main)] font-medium"
+            ? "text-[color:var(--text-main)]"
             : "text-[color:var(--text-muted)] hover:text-cyan-400"
-        }`}
+        }
+      `}
     >
       {label}
+
+      {/* ACTIVE UNDERLINE */}
+      {active === id && (
+        <span
+          className="
+            absolute left-0 -bottom-1 w-full h-[2px]
+            bg-cyan-400 rounded-full
+          "
+        />
+      )}
     </a>
   );
 
   return (
     <nav
-      className={`fixed top-0 w-full z-50 transition-all duration-300
+      className={`
+        fixed top-0 w-full z-50
+        transition-all duration-300
         ${
           scrolled
-            ? "bg-[color:var(--bg-main)]/70 backdrop-blur border-b border-black/10"
+            ? "bg-[color:var(--bg-main)]/70 backdrop-blur-lg border-b border-white/10"
             : "bg-transparent"
-        }`}
+        }
+      `}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* LOGO */}
         <a
           href="#home"
-          className="font-bold text-lg tracking-wide
-                     text-[color:var(--text-main)]
-                     hover:text-cyan-400 transition"
+          className="
+            font-bold text-lg tracking-wide
+            text-[color:var(--text-main)]
+            hover:text-cyan-400 transition
+          "
         >
           Robi
         </a>
 
         {/* DESKTOP MENU */}
-        <div className="hidden md:flex items-center gap-8 text-sm">
+        <div className="hidden md:flex items-center gap-8">
+
           {sections.map((s) => (
             <NavLink key={s.id} {...s} />
           ))}
@@ -86,20 +104,28 @@ export default function Navbar({ isLight, setIsLight }) {
           {/* THEME TOGGLE */}
           <button
             onClick={() => setIsLight(!isLight)}
-            className="ml-2 p-2 rounded-full
-                       text-[color:var(--text-muted)]
-                       hover:text-[color:var(--text-main)]
-                       hover:bg-white/10 transition"
+            className="
+              ml-2 p-2 rounded-full
+              text-[color:var(--text-muted)]
+              hover:text-[color:var(--text-main)]
+              hover:bg-white/10
+              transition
+            "
             aria-label="Toggle theme"
           >
             {isLight ? "🌙" : "☀️"}
           </button>
+
         </div>
 
         {/* MOBILE BUTTON */}
         <button
-          className="md:hidden text-[color:var(--text-muted)]
-                     hover:text-[color:var(--text-main)] transition"
+          className="
+            md:hidden
+            text-[color:var(--text-muted)]
+            hover:text-[color:var(--text-main)]
+            transition
+          "
           onClick={() => setOpen(!open)}
         >
           {open ? <FaTimes size={20} /> : <FaBars size={20} />}
@@ -108,19 +134,25 @@ export default function Navbar({ isLight, setIsLight }) {
 
       {/* MOBILE MENU */}
       {open && (
-        <div className="md:hidden bg-[color:var(--bg-main)]/70 backdrop-blur-md">
-          <div className="flex flex-col px-6 py-6 gap-4 text-sm">
+        <div className="md:hidden bg-[color:var(--bg-main)]/80 backdrop-blur-lg border-t border-white/10">
+          <div className="flex flex-col px-6 py-6 gap-5 text-sm">
+
             {sections.map((s) => (
               <NavLink key={s.id} {...s} mobile />
             ))}
 
             <button
               onClick={() => setIsLight(!isLight)}
-              className="mt-4 text-left text-[color:var(--text-muted)]
-                         hover:text-cyan-400 transition"
+              className="
+                mt-4 text-left
+                text-[color:var(--text-muted)]
+                hover:text-cyan-400
+                transition
+              "
             >
               {isLight ? "Switch to Dark 🌙" : "Switch to Light ☀️"}
             </button>
+
           </div>
         </div>
       )}

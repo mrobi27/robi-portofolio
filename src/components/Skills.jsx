@@ -9,8 +9,13 @@ import {
   FaFigma,
   FaJava,
   FaPython,
+  FaFileExcel,
+  FaFileWord,
 } from "react-icons/fa";
-import { SiTailwindcss } from "react-icons/si";
+
+import {
+  SiTailwindcss,
+} from "react-icons/si";
 
 const skills = [
   { name: "HTML", icon: FaHtml5, color: "#e34f26" },
@@ -21,9 +26,11 @@ const skills = [
   { name: "React", icon: FaReact, color: "#61dafb" },
   { name: "Tailwind", icon: SiTailwindcss, color: "#38bdf8" },
   { name: "Git", icon: FaGitAlt, color: "#f05032" },
-  { name: "GitHub", icon: FaGithub, color: "github" },
+  { name: "GitHub", icon: FaGithub, color: "#ffffff" },
   { name: "Linux", icon: FaLinux, color: "#fcc624" },
   { name: "Figma", icon: FaFigma, color: "#a259ff" },
+  { name: "Excel", icon: FaFileExcel, color: "#21a366" },
+  { name: "Word", icon: FaFileWord, color: "#2b579a" },
 ];
 
 export default function Skills() {
@@ -36,25 +43,41 @@ export default function Skills() {
       <div className="max-w-6xl mx-auto px-6 text-center">
 
         {/* ===== TITLE ===== */}
-        <h2 className="section-title text-2xl sm:text-3xl mb-4">
-          Tech Stack
-        </h2>
+        <div className="mb-16">
 
-        <p className="text-slate-400 theme-light:text-slate-600 max-w-xl mx-auto mb-16 text-sm sm:text-base leading-relaxed">
-          Technologies and tools I use across system, security, and frontend
-          development.
-        </p>
+          <h2
+            id="skills-title"
+            className="
+              text-4xl sm:text-5xl font-bold
+              bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500
+              bg-clip-text text-transparent
+              tracking-tight
+              drop-shadow-[0_0_14px_rgba(56,189,248,0.35)]
+            "
+          >
+            Tech Stack
+          </h2>
+
+          <p className="text-slate-400 theme-light:text-slate-600 max-w-xl mx-auto mt-4 text-sm sm:text-base leading-relaxed">
+            Technologies and tools I use across system, security, and frontend
+            development.
+          </p>
+
+        </div>
 
         {/* ===== MARQUEE ===== */}
         <div className="relative mb-24 overflow-hidden pt-8">
           <div className="tech-marquee gap-16 px-6">
+
             {[...skills, ...skills].map((skill, i) => {
               const Icon = skill.icon;
+
               return (
                 <div
                   key={i}
                   className="group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2"
                 >
+
                   {/* ICON */}
                   <Icon
                     className="text-5xl"
@@ -64,7 +87,7 @@ export default function Skills() {
                     }}
                   />
 
-                  {/* NAME (NEON GRADIENT) */}
+                  {/* NAME */}
                   <span
                     className="
                       mt-3 text-sm font-semibold
@@ -80,37 +103,47 @@ export default function Skills() {
                   >
                     {skill.name}
                   </span>
+
                 </div>
               );
             })}
+
           </div>
         </div>
 
         {/* ===== SKILL CARDS ===== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+
           <SkillCard
             title="Network & System"
             desc="Linux-based systems, networking fundamentals, and system exploration."
           />
+
           <SkillCard
             title="Cybersecurity"
             desc="Red team mindset, security testing, and offensive exploration."
           />
+
           <SkillCard
             title="Frontend Development"
             desc="Building interfaces using React, Tailwind, and modern JavaScript."
           />
+
           <SkillCard
             title="UI / UX Design"
             desc="Designing clean, usable interfaces with Figma and design systems."
           />
+
         </div>
+
       </div>
     </section>
   );
 }
 
+
 /* ===== SKILL CARD ===== */
+
 function SkillCard({ title, desc }) {
   return (
     <div
@@ -135,20 +168,23 @@ function SkillCard({ title, desc }) {
         theme-light:hover:shadow-slate-300/80
       "
     >
+
+      {/* TITLE */}
       <h3
         className="
           font-semibold mb-2
-          text-slate-100 theme-light:text-slate-900
-          group-hover:text-cyan-400
-          transition-colors
+          text-cyan-400
+          drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]
         "
       >
         {title}
       </h3>
 
+      {/* DESC */}
       <p className="text-sm text-slate-400 theme-light:text-slate-600 leading-relaxed">
         {desc}
       </p>
+
     </div>
   );
 }
