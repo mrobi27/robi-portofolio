@@ -1,5 +1,8 @@
 import { useRef, useState, useEffect } from "react";
+import { Download } from "lucide-react";
+
 import foto from "../assets/foto/Foto 3x4.JPG";
+import cv from "../assets/cv/Muhamad_Robi_Ardita_CV.pdf";
 
 export default function Hero() {
   const cardRef = useRef(null);
@@ -98,8 +101,6 @@ export default function Hero() {
               className="
                 inline-block whitespace-nowrap
                 animated-gradient
-                theme-light:text-slate-900
-                theme-light:bg-none
                 text-[1.7rem] sm:text-4xl md:text-5xl
                 min-w-[18ch] sm:min-w-[22ch]
               "
@@ -110,11 +111,12 @@ export default function Hero() {
 
           </h1>
 
-          {/* ROLE TAGLINE */}
+          {/* ROLE */}
           <p className="mt-3 text-sm sm:text-base text-cyan-400 font-medium">
             Cybersecurity • Frontend Development • UI / UX Design
           </p>
 
+          {/* DESCRIPTION */}
           <p
             className="
               mt-5 max-w-lg mx-auto md:mx-0
@@ -129,31 +131,37 @@ export default function Hero() {
           {/* CTA BUTTONS */}
           <div className="mt-8 flex gap-4 justify-center md:justify-start">
 
+            {/* VIEW PROJECTS */}
             <a
               href="#projects"
               className="
-                px-6 py-3 rounded-lg
+                px-7 py-3 rounded-lg
                 bg-cyan-500 text-white
-                text-sm font-medium
+                text-sm font-semibold
                 hover:bg-cyan-400
                 transition
+                shadow-lg shadow-cyan-500/20
               "
             >
               View Projects
             </a>
 
+            {/* DOWNLOAD CV */}
             <a
-              href="#contact"
+              href={cv}
+              download
               className="
-                px-6 py-3 rounded-lg
+                flex items-center gap-2
+                px-7 py-3 rounded-lg
                 border border-white/20
-                text-sm font-medium
+                text-sm font-semibold
                 hover:border-cyan-400
                 hover:text-cyan-400
                 transition
               "
             >
-              Contact Me
+              <Download size={18} />
+              Download CV
             </a>
 
           </div>
@@ -196,8 +204,8 @@ export default function Hero() {
                 w-full h-full
                 object-cover
                 rounded-2xl
-                bg-[#020617] theme-light:bg-white
-                border border-white/10 theme-light:border-slate-200
+                bg-[#020617]
+                border border-white/10
                 shadow-[0_30px_70px_rgba(0,0,0,0.6)]
                 hover:shadow-[0_30px_80px_rgba(56,189,248,0.25)]
                 transition-all duration-300
@@ -210,7 +218,7 @@ export default function Hero() {
 
       </div>
 
-      {/* SCROLL INDICATOR */}
+      {/* SCROLL */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs text-slate-400 animate-bounce">
         Scroll ↓
       </div>

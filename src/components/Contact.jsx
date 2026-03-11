@@ -79,7 +79,7 @@ export default function Contact() {
             />
 
             <ContactItem
-              href="https://www.linkedin.com/in/muhamad-robi-ardita-2b1076328/"
+              href="https://www.linkedin.com/in/muhamad-robi-ardita/"
               text="LinkedIn Profile"
               icon={<FaLinkedin />}
               external

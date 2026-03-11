@@ -4,6 +4,9 @@ import gsaCert from "../assets/foto/serGSA.png";
 import ctfJuara2 from "../assets/foto/Juara2Ctf.png";
 import aiKumpul from "../assets/foto/aiKumpul.png";
 import D1 from "../assets/foto/D1.png";
+import smkp from "../assets/foto/smkp.png";
+import k3 from "../assets/foto/k3.png";
+import Cyber from "../assets/foto/cyber.png";
 
 export default function Certificates() {
   const [activeCert, setActiveCert] = useState(null);
@@ -22,14 +25,16 @@ export default function Certificates() {
 
           <h2
             className="
-              text-4xl sm:text-5xl font-bold
+              text-3xl sm:text-4xl lg:text-5xl
+              font-bold
+              leading-tight
               bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-500
               bg-clip-text text-transparent
               tracking-tight
               drop-shadow-[0_0_14px_rgba(56,189,248,0.35)]
             "
           >
-            Achievements & Certificates
+            Achievements & Certifications
           </h2>
 
           <p className="text-slate-400 theme-light:text-slate-600 max-w-xl mx-auto mt-4 text-sm leading-relaxed">
@@ -39,16 +44,21 @@ export default function Certificates() {
 
         </div>
 
-        {/* ACHIEVEMENTS */}
-        <div className="flex items-center justify-center gap-4 mb-12">
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
-          <h3 className="text-lg font-semibold tracking-wide text-cyan-400 drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]">
+        {/* ACHIEVEMENTS DIVIDER */}
+        <div className="flex items-center justify-center gap-3 sm:gap-4 mb-12 w-full">
+
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
+
+          <h3 className="text-sm sm:text-lg font-semibold tracking-wide text-cyan-400 whitespace-nowrap drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]">
             ✦ Achievements ✦
           </h3>
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
+
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
+
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto mb-16">
+        {/* ACHIEVEMENTS GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto mb-16">
 
           <CertificateCard
             image={ctfJuara2}
@@ -70,16 +80,21 @@ export default function Certificates() {
 
         </div>
 
-        {/* CERTIFICATES */}
-        <div className="flex items-center justify-center gap-4 mb-12">        
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
-          <h3 className="text-lg font-semibold tracking-wide text-cyan-400 drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]">
-            ✦ Certificates ✦
+        {/* CERTIFICATES DIVIDER */}
+        <div className="flex items-center justify-center gap-3 sm:gap-4 mb-12 w-full">
+
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
+
+          <h3 className="text-sm sm:text-lg font-semibold tracking-wide text-cyan-400 whitespace-nowrap drop-shadow-[0_0_6px_rgba(34,211,238,0.8)]">
+            ✦ Certifications ✦
           </h3>
-          <div className="h-px w-24 bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
+
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-60"></div>
+
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {/* CERTIFICATES GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
 
           <CertificateCard
             image={gsaCert}
@@ -108,6 +123,33 @@ export default function Certificates() {
             onClick={() => setActiveCert(D1)}
           />
 
+          <CertificateCard
+            image={Cyber}
+            alt="Cybersecurity Fundamentals – Cyber"
+            title="From Zero to Threat Hunter – Cybersecurity Session"
+            desc="Participated in a cybersecurity sharing session discussing the transition into threat hunting and early career paths in the cybersecurity industry."
+            tags={["Cybersecurity","Threat Hunting","Security Awareness"]}
+            onClick={() => setActiveCert(Cyber)}
+          />
+
+          <CertificateCard
+            image={smkp}
+            alt="SMKP Certificate"
+            title="Mining Safety Management System (SMKP) – Basic"
+            desc="Training on the implementation of Mining Safety Management System based on Kepmen ESDM No.1827 K/30/MEM/2018."
+            tags={["Mining Safety","SMKP","Safety Management"]}
+            onClick={() => setActiveCert(smkp)}
+          />
+
+          <CertificateCard
+            image={k3}
+            alt="K3 Certificate"
+            title="Mining Safety Fundamentals (K3) – BISA Safety"
+            desc="Completed training on mining occupational safety (K3), covering hazard identification, risk prevention, and safety procedures in mining operations."
+            tags={["Mining Safety","K3","Occupational Safety"]}
+            onClick={() => setActiveCert(k3)}
+          />
+          
         </div>
 
       </div>
@@ -121,7 +163,7 @@ export default function Certificates() {
           <img
             src={activeCert}
             alt="Certificate Preview"
-            className="max-w-full max-h-[90vh] rounded-xl shadow-2xl"
+            className="max-w-full max-h-[85vh] object-contain rounded-xl shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           />
 
@@ -143,7 +185,7 @@ function CertificateCard({ image, alt, title, desc, tags, onClick }) {
     <div
       onClick={onClick}
       className="
-        w-full max-w-sm
+        w-full
         group cursor-pointer
         p-3 rounded-xl
         border border-white/10
@@ -162,13 +204,13 @@ function CertificateCard({ image, alt, title, desc, tags, onClick }) {
     >
 
       {/* IMAGE */}
-      <div className="overflow-hidden rounded-lg mb-3">
+      <div className="overflow-hidden rounded-lg mb-3 h-40 flex items-center justify-center">
         <img
           src={image}
           alt={alt}
           className="
-            w-full
-            object-cover
+            max-h-full
+            object-contain
             transition-transform duration-300
             group-hover:scale-105
           "
