@@ -6,7 +6,7 @@ import aiKumpul from "../assets/foto/aiKumpul.png";
 import D1 from "../assets/foto/D1.png";
 import smkp from "../assets/foto/smkp.png";
 import k3 from "../assets/foto/k3.png";
-import Cyber from "../assets/foto/cyber.png";
+import Cyber from "../assets/foto/Cyber.png";
 
 export default function Certificates() {
   const [activeCert, setActiveCert] = useState(null);
